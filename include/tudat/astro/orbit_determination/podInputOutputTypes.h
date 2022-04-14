@@ -99,6 +99,19 @@ public:
                     observationCollection_->getTotalObservableSize( ), constantWeight );
     }
 
+    //! Function to replace all observation weights using a vector
+    /*!
+     * Function to replace all observation weights using a vector
+     * \param
+     */
+    void setWeightsMatrix(
+            const std::vector<double>& Weights )
+    {
+        for (unsigned int i = 0; i < Weights.size(); i++){
+            weightsMatrixDiagonals_[i]=Weights[i];
+        }
+    }
+
     //! Function to set a values for observation weights, constant per observable type
     /*!
      * Function to set a values for observation weights, constant per observable type
