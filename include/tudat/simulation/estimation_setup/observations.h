@@ -301,6 +301,11 @@ public:
                                getSingleLinkTimes( observableType, linkEnds ) );
     }
 
+    std::vector< LinkEnds > getConcatenatedLinkEndIdNames( )
+    {
+        return concatenatedLinkEndIdNames_;
+    }
+
 private:
 
     void setObservationSetIndices( )
@@ -346,6 +351,7 @@ private:
         concatenatedObservations_ = Eigen::Matrix< ObservationScalarType, Eigen::Dynamic, 1 >::Zero( totalObservableSize_ );
         concatenatedTimes_.resize( totalObservableSize_ );
         concatenatedLinkEndIds_.resize( totalObservableSize_ );
+        concatenatedLinkEndIdNames_.resize( totalObservableSize_ );
 
 
         int observationCounter = 0;
@@ -388,6 +394,7 @@ private:
                         {
                             concatenatedTimes_[ observationCounter ] = currentObservationTimes.at( j );
                             concatenatedLinkEndIds_[ observationCounter ] = currentStationId;
+                            concatenatedLinkEndIdNames_[ observationCounter ] = currentLinkEnds;
                             observationCounter++;
                         }
                     }
@@ -404,6 +411,8 @@ private:
     std::vector< TimeType > concatenatedTimes_;
 
     std::vector< int > concatenatedLinkEndIds_;
+
+    std::vector< LinkEnds > concatenatedLinkEndIdNames_;
 
     std::map< observation_models::LinkEnds, int > linkEndIds_;
 
